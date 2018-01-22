@@ -92,21 +92,12 @@ function main () {
     function buildGame () {//could take params for more control
         //SET DISPLAY STAGE
         displayStage = 'game';
-        game = new Game(gameAreaDiv, gameToGameOverBridge);
-        //THE CONTENT
-        // gameContent = document.createElement('p');
-        // gameContent.setAttribute('class', 'display-container');
-        // gameContent.innerText = 'THE GAME';
-        // //CONTENT INTO DOM
-        // gameAreaDiv.appendChild(gameContent);
-        //TIMER
-        //gameTimeOutId = window.setTimeout(gameToGameOverBridge, _GAMETIME);  //GAME.DESTROY WILL CALL gameToGameOverBridge
+        game = new Game(gameAreaDiv);
+        game.onGameOver(gameToGameOverBridge);
 
     }
 
     function destroyGame () {
-        //gameContent.remove(); //This will be replaced by a removal of the canvas (using obj.destroy)
-        //window.clearTimeout(gameTimeOutId);
         game.destroy();
     }
 
