@@ -92,7 +92,7 @@ function main () {
     function buildGame () {//could take params for more control
         //SET DISPLAY STAGE
         displayStage = 'game';
-        game = new Game(gameAreaDiv);
+        game = new Game(gameAreaDiv, gameToGameOverBridge);
         //THE CONTENT
         // gameContent = document.createElement('p');
         // gameContent.setAttribute('class', 'display-container');
@@ -100,13 +100,13 @@ function main () {
         // //CONTENT INTO DOM
         // gameAreaDiv.appendChild(gameContent);
         //TIMER
-        gameTimeOutId = window.setTimeout(gameToGameOverBridge, _GAMETIME);  //GAME.DESTROY WILL CALL gameToGameOverBridge
+        //gameTimeOutId = window.setTimeout(gameToGameOverBridge, _GAMETIME);  //GAME.DESTROY WILL CALL gameToGameOverBridge
 
     }
 
     function destroyGame () {
         //gameContent.remove(); //This will be replaced by a removal of the canvas (using obj.destroy)
-        window.clearTimeout(gameTimeOutId);
+        //window.clearTimeout(gameTimeOutId);
         game.destroy();
     }
 

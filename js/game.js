@@ -1,6 +1,6 @@
 'use strict';
 
-function Game (gameAreaDiv) {
+function Game (gameAreaDiv, gameToGameOverBridge) {
     var self = this;
 
     //Set game area div as a property of *this* Game
@@ -34,7 +34,7 @@ function Game (gameAreaDiv) {
         // To end the game, just set self.finished to true with some logic here...
         if (i > 200) {
         self.finished = true;
-        destroyGame();
+        gameToGameOverBridge();
         }
 
         //DRAWING - this is the high-level 'executable' for ALL things drawn to screen
