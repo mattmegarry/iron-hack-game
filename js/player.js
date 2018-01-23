@@ -12,9 +12,9 @@ function Player (ctx, width, height) {
     self.gameWidth = width;
     self.gameHeight = height;
     
-    //Place the player in the top right of the screen
+    //Place the player
     self.x = 0;
-    self.y = 0;
+    self.y = 400;
     
     //Leave DIRECTION for now, only needed in the case of user indepenedent movement or WRAP
     self.moveAction = null;
@@ -23,13 +23,38 @@ function Player (ctx, width, height) {
     self.leftCollision = false;
 }
 
-Player.prototype.moveLateral = function (moveAction) { // I set things in motion!
+Player.prototype.move = function (moveAction) { // I set things in motion!
     var self = this;
     
     self.moveAction = moveAction;
 }
 
-Player.prototype.lateralCollision = function (){
+Player.prototype.update = function () { // I do things EVERY FRAME!
+    var self = this;
+
+    self._collision();
+
+    //User responsive lateral movement EVERY FRAME
+    if (self.moveAction === 'right' && self.rightCollision === false) {
+        self.x += 10;
+    } 
+    else if (self.moveAction === 'left' && self.leftCollision === false){
+        self.x -= 10;
+    }
+    else if (self.moveAction === 'stopright'){
+        self.x = self.x;
+    }
+    else if (self.moveAction === 'stopleft'){
+        self.x = self.x;
+    }
+    
+    self.rightCollision = false;
+    self.leftCollision = false;
+
+    //console.log(self.x);
+}
+
+Player.prototype._collision = function (){
     var self = this;
 
     self.rightSide = self.x + self.size; 
@@ -40,36 +65,13 @@ Player.prototype.lateralCollision = function (){
     if (self.rightSide > 1000) {
         self.rightCollision = true;
     } 
-    else if (self.leftSide < 0) {
+    else if (self.leftSide < 0 ) {
         self.leftCollision = true;
     }
 
     console.log(self.leftSide);
 }
 
-Player.prototype.update = function () { // I do things EVERY FRAME!
-    var self = this;
-
-if () {    
-    //User responsive lateral movement EVERY FRAME
-    if (self.moveAction === 'right') {
-        self.x += 10;
-    } 
-    else if (self.moveAction === 'left'){
-        self.x -= 10;
-    }
-}    
-
-    if (self.moveAction === 'stopright'){
-        self.x = self.x;
-    }
-    else if (self.moveAction === 'stopleft'){
-        self.x = self.x;
-    }
-    
-
-    //console.log(self.x);
-}
 
 Player.prototype.draw = function () {
     var self = this;

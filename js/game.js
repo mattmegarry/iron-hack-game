@@ -65,10 +65,13 @@ Game.prototype._defineUserInputs = function () {
         var key = event.key.toLowerCase();
         switch (key) {
             case 'a':
-                self.player.moveLateral('left');
+                self.player.move('left');
                 break;
             case 'd':
-                self.player.moveLateral('right');
+                self.player.move('right');
+                break;
+            case 'w':
+                self.player.move('jump');
                 break;
         }
     }
@@ -76,10 +79,10 @@ Game.prototype._defineUserInputs = function () {
         var key = event.key.toLowerCase();
         switch (key) {
           case 'a':
-            self.player.moveLateral('stopleft');
+            self.player.move('stopleft');
             break;
           case 'd':
-            self.player.moveLateral('stopright');
+            self.player.move('stopright');
             break;
         }
     } 
@@ -90,7 +93,6 @@ Game.prototype._frameRefresh = function() {
 
     //------LOGIC------
     //PLAYER UPDATES
-    self.player.lateralCollision();
     self.player.update();
     //WORLD UPDATES**
     //self.world.update();
@@ -105,7 +107,7 @@ Game.prototype._frameRefresh = function() {
     //DRAWING**
     
     
-    //The background
+    
     self.ctx.clearRect(0, 0, 1000, 600);
     self.ctx.fillStyle = self.bgColor; //DOESN'T MAKE SENSE IN CONTEXT OF CLEAR RECT
     //The other stuff - must go after!!
