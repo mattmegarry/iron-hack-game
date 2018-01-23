@@ -12,12 +12,15 @@ function Player (ctx, width, height) {
     self.gameWidth = width;
     self.gameHeight = height;
     
-    //Place the player in the center of the screen (conceptually)
-    self.x = self.gameWidth / 2;
-    self.y = self.gameHeight / 2;
-
+    //Place the player in the top right of the screen
+    self.x = 0;
+    self.y = 0;
+    
     //Leave DIRECTION for now, only needed in the case of user indepenedent movement or WRAP
     self.moveAction = null;
+
+    self.rightCollision = false;
+    self.leftCollision = false;
 }
 
 Player.prototype.moveLateral = function (moveAction) { // I set things in motion!
@@ -26,9 +29,28 @@ Player.prototype.moveLateral = function (moveAction) { // I set things in motion
     self.moveAction = moveAction;
 }
 
+Player.prototype.lateralCollision = function (){
+    var self = this;
+
+    self.rightSide = self.x + self.size; 
+    self.leftSide = self.x;
+    self.topSide = self.y;
+    self.bottomSide = self.y + self.size;
+
+    if (self.rightSide > 1000) {
+        self.rightCollision = true;
+    } 
+    else if (self.leftSide < 0) {
+        self.leftCollision = true;
+    }
+
+    console.log(self.leftSide);
+}
+
 Player.prototype.update = function () { // I do things EVERY FRAME!
     var self = this;
 
+if () {    
     //User responsive lateral movement EVERY FRAME
     if (self.moveAction === 'right') {
         self.x += 10;
@@ -36,14 +58,15 @@ Player.prototype.update = function () { // I do things EVERY FRAME!
     else if (self.moveAction === 'left'){
         self.x -= 10;
     }
-    else if (self.moveAction === 'stopright'){
+}    
+
+    if (self.moveAction === 'stopright'){
         self.x = self.x;
     }
     else if (self.moveAction === 'stopleft'){
         self.x = self.x;
     }
-
-    //GRAVITY HERE ONCE COLLISION DETECTION
+    
 
     //console.log(self.x);
 }
@@ -52,5 +75,5 @@ Player.prototype.draw = function () {
     var self = this;
     
     self.ctx.fillStyle = 'red';
-    self.ctx.fillRect(self.x - self.size/2, self.y - self.size/2, self.size, self.size);
+    self.ctx.fillRect(self.x, self.y, self.size, self.size);
   }

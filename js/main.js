@@ -11,7 +11,7 @@ function main () {
     var displayStage;
     var gameAreaDiv = document.querySelector('#display-area');
 
-    // STAGE BRIDGE FUNCTIONS
+    // STAGE BRIDGING FUNCTIONS
 
     var splashToAniBridge = function (){
         destroySplash();
