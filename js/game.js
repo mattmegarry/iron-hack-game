@@ -30,7 +30,6 @@ Game.prototype._init = function() {
     self.finished = false;
     self.width = 1000; //Check or CHANGE THIS
     self.height = 600; //Check or CHANGE THIS
-    self.bgColor = 'blue';
     self.i = 0;
 
 

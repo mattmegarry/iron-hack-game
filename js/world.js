@@ -36,16 +36,16 @@ World.prototype.update = function () {
 
 World.prototype.draw = function () {
     var self = this;
-
-    self.player.draw();
-    
-    self.solids.forEach(function(block) {
-        block.draw();
-    });
     
     self.waypoints.forEach(function(block) {
         block.draw();
-    }); 
+    });
+
+    self.player.draw();
+
+    self.solids.forEach(function(block) {
+        block.draw();
+    });    
 }
 
 World.prototype._solidCollision = function () {
@@ -104,17 +104,24 @@ World.prototype._createSolids = function () {
     var self = this;
 
     //posit_X, posit_Y, width, height, ctx, type
-    var newBlock10Percent = new Block(self.width * 0.6, self.height * 0.1, 30, 80, self.ctx, 'solid', 'red');
-    self.solids.push(newBlock10Percent);
+    var newTopLineSolid = new Block(60, 100, 600, 10, self.ctx, 'solid', 'black');
+    self.solids.push(newTopLineSolid);
 
-    var newBlock50Percent = new Block(self.width * 0.6, self.height * 0.5, 200, 6, self.ctx, 'solid', 'black');
+    var newBlock50Percent = new Block(140, 200, 600, 10, self.ctx, 'solid', 'black');
     self.solids.push(newBlock50Percent);
 
-    var fullFloorBlock = new Block(0, 590, 1000, 10, self.ctx, 'solid', 'green');
+    var fullFloorBlock = new Block(140, 300, 700, 10, self.ctx, 'solid', 'black');
     self.solids.push(fullFloorBlock);
 
-    var rightBoundaryBlock = new Block(400, 400, 50, 50, self.ctx, 'solid', 'orange');
+    var rightBoundaryBlock = new Block(60, 400, 50, 10, self.ctx, 'solid', 'black');
     self.solids.push(rightBoundaryBlock);
+
+    var rightBoundaryBlock = new Block(60, 500, 600, 10, self.ctx, 'solid', 'black');
+    self.solids.push(rightBoundaryBlock);
+
+    //Boundary Blocks
+    var fullFloorBlock = new Block(0, 595, 1000, 10, self.ctx, 'solid', 'green');
+    self.solids.push(fullFloorBlock);
 
     // self.ctx.fillStyle = self.blockColor;
     // self.ctx.fillRect(0, 590, 1000, 10);
@@ -123,16 +130,19 @@ World.prototype._createSolids = function () {
 World.prototype._createWaypoints = function () {
     var self = this // change for create portals
     
-    var newBlock10Percent = new Block(self.width * 0.7, self.height * 0.1, 30, 80, self.ctx, 'waypoint', 'pink');
+    var newBlock10Percent = new Block(60, 70, 600, 30, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(newBlock10Percent);
 
-    var newBlock50Percent = new Block(self.width * 0.3, self.height * 0.5, 200, 6, self.ctx, 'waypoint', 'pink');
+    var newBlock50Percent = new Block(140, 170, 600, 30, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(newBlock50Percent);
 
-    var fullFloorBlock = new Block(0, 500, 1000, 10, self.ctx, 'waypoint', 'pink');
+    var fullFloorBlock = new Block(140, 270, 700, 30, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(fullFloorBlock);
 
-    var rightBoundaryBlock = new Block(400, 30, 50, 50, self.ctx, 'waypoint', 'pink');
+    var rightBoundaryBlock = new Block(60, 370, 50, 30, self.ctx, 'waypoint', 'pink');
+    self.waypoints.push(rightBoundaryBlock);
+
+    var rightBoundaryBlock = new Block(60, 470, 600, 30, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(rightBoundaryBlock);
     // self.ctx.fillStyle = self.portalColor;
     // self.ctx.fillRect(0, 400, 26, 26);
