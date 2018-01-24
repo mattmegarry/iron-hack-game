@@ -130,19 +130,19 @@ World.prototype._createBlocks = function () {
 World.prototype._createWaypoints = function () {
     var self = this // change for create portals
     
-    var newBlock10Percent = new Waypoint(60, 70, 600, 30, self.ctx, 'waypoint', 'pink');
+    var newBlock10Percent = new Waypoint('One', 60, 70, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(newBlock10Percent);
 
-    var newBlock50Percent = new Waypoint(140, 170, 600, 30, self.ctx, 'waypoint', 'pink');
+    var newBlock50Percent = new Waypoint('Twwooooooo', 140, 170, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(newBlock50Percent);
 
-    var fullFloorBlock = new Waypoint(140, 270, 700, 30, self.ctx, 'waypoint', 'pink');
+    var fullFloorBlock = new Waypoint('Three', 140, 270, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(fullFloorBlock);
 
-    var rightBoundaryBlock = new Waypoint(60, 370, 50, 30, self.ctx, 'waypoint', 'pink');
+    var rightBoundaryBlock = new Waypoint('4', 60, 370, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(rightBoundaryBlock);
 
-    var rightBoundaryBlock = new Waypoint(60, 470, 600, 30, self.ctx, 'waypoint', 'pink');
+    var rightBoundaryBlock = new Waypoint('Fiiiiveeeeeee', 60, 470, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(rightBoundaryBlock);
     // self.ctx.fillStyle = self.portalColor;
     // self.ctx.fillRect(0, 400, 26, 26);

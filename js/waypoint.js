@@ -1,12 +1,11 @@
 'use strict'
 
-function Waypoint(posit_X, posit_Y, width, height, ctx, type, color) {
+function Waypoint(text, posit_X, posit_Y, ctx, type, color) {
     var self = this;
 
+    self.text = text;
     self.x = posit_X;
     self.y = posit_Y;
-    self.width = width;
-    self.height = height;
     self.ctx = ctx;
     self.type = type;
     self.color = color;
@@ -17,10 +16,10 @@ Waypoint.prototype.draw = function () {
     var self = this;
 
 
-        self.ctx.fillStyle = self.color;
-        self.ctx.fillRect(self.x, self.y, self.width, self.height);
+        //self.ctx.fillStyle = self.color;
+        //self.ctx.fillRect(self.x, self.y, self.width, self.height);
 
-    //self.ctx.fillText('Hello world', 10, 50);
+        self.ctx.fillText(self.text, self.x, self.y);
     /* Text strategy
     
     
