@@ -30,7 +30,7 @@ Game.prototype._init = function() {
     self.finished = false;
     self.width = 1000; //Check or CHANGE THIS
     self.height = 600; //Check or CHANGE THIS
-    self.bgColor = 'grey';
+    self.bgColor = 'blue';
     self.i = 0;
 
 
@@ -38,7 +38,6 @@ Game.prototype._init = function() {
     self.ctx = self.canvasElement.getContext('2d');
 
     //SUB GAME OBJECT INSTANCIATION**
-    self.player = new Player(self.ctx, self.width, self.height);
     self.world = new World(self.ctx, self.width, self.height);
 
     self._defineUserInputs();
@@ -65,25 +64,34 @@ Game.prototype._defineUserInputs = function () {
         var key = event.key.toLowerCase();
         switch (key) {
             case 'a':
-                self.player.move('left');
+                self.world.player.move('left');//*** */
                 break;
             case 'd':
-                self.player.move('right');
+                self.world.player.move('right');//*** */
                 break;
             case 'w':
-                self.player.move('jump');
+                self.world.player.move('up');//*** */
                 break;
+            case 's':
+                self.world.player.move('down');//*** */
+                break;    
         }
     }
     self.handleKeyUp = function (event) {
         var key = event.key.toLowerCase();
         switch (key) {
-          case 'a':
-            self.player.move('stopleft');
-            break;
-          case 'd':
-            self.player.move('stopright');
-            break;
+            case 'a':
+                self.world.player.move('stopleft');//*** */
+                break;
+            case 'd':
+                self.world.player.move('stopright');//*** */
+                break;
+            case 'w':
+                self.world.player.move('stopup');//*** */
+                break;
+            case 's':
+                self.world.player.move('stopdown');//*** */
+                break; 
         }
     } 
 }
@@ -93,7 +101,7 @@ Game.prototype._frameRefresh = function() {
 
     //------LOGIC------
     //PLAYER UPDATES
-    self.player.update();
+    self.world.update();//*** 
     //WORLD UPDATES**
     //self.world.update();
     self.i++;
@@ -105,14 +113,11 @@ Game.prototype._frameRefresh = function() {
     }
 
     //DRAWING**
-    
-    
-    
     self.ctx.clearRect(0, 0, 1000, 600);
-    self.ctx.fillStyle = self.bgColor; //DOESN'T MAKE SENSE IN CONTEXT OF CLEAR RECT
+    self.ctx.fillStyle = self.bgColor;
     //The other stuff - must go after!!
     self.world.draw();
-    self.player.draw();
+    //self.world.player.draw(); //****
 
     //CONTINUE REFRESHING
     if (!self.finished) {

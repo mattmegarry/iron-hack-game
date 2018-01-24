@@ -19,8 +19,8 @@ function Player (ctx, width, height) {
     //Leave DIRECTION for now, only needed in the case of user indepenedent movement or WRAP
     self.moveAction = null;
 
-    self.rightCollision = false;
-    self.leftCollision = false;
+    self.collisionRight = false;
+    self.collisionLeft = false;
 }
 
 Player.prototype.move = function (moveAction) { // I set things in motion!
@@ -32,46 +32,39 @@ Player.prototype.move = function (moveAction) { // I set things in motion!
 Player.prototype.update = function () { // I do things EVERY FRAME!
     var self = this;
 
-    self._collision();
-
+    //USE SWITCH - and for each other object woth collisions
     //User responsive lateral movement EVERY FRAME
     if (self.moveAction === 'right' && self.rightCollision === false) {
         self.x += 10;
     } 
-    else if (self.moveAction === 'left' && self.leftCollision === false){
+    else if (self.moveAction === 'left' && self.leftCollision === false) {
         self.x -= 10;
     }
-    else if (self.moveAction === 'stopright'){
+    else if (self.moveAction === 'stopright') {
         self.x = self.x;
     }
-    else if (self.moveAction === 'stopleft'){
+    else if (self.moveAction === 'stopleft') {
         self.x = self.x;
     }
-    
-    self.rightCollision = false;
-    self.leftCollision = false;
-
-    //console.log(self.x);
-}
-
-Player.prototype._collision = function (){
-    var self = this;
-
-    self.rightSide = self.x + self.size; 
-    self.leftSide = self.x;
-    self.topSide = self.y;
-    self.bottomSide = self.y + self.size;
-
-    if (self.rightSide > 1000) {
-        self.rightCollision = true;
+    //FAKE UP AND DOWN
+    if (self.moveAction === 'up' && self.topCollision === false) {
+        self.y -= 10;
     } 
-    else if (self.leftSide < 0 ) {
-        self.leftCollision = true;
+    else if (self.moveAction === 'down' && self.bottomCollision === false) {
+        self.y += 10;
+    }
+    else if (self.moveAction === 'stopup') {
+        self.y = self.y;
+    }
+    else if (self.moveAction === 'stopdown') {
+        self.y = self.y;
     }
 
-    console.log(self.leftSide);
+    self.leftCollision = false;
+    self.rightCollision = false;
+    self.topCollision = false;
+    self.bottomCollision = false;
 }
-
 
 Player.prototype.draw = function () {
     var self = this;
