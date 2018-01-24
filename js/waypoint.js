@@ -15,10 +15,9 @@ function Waypoint(text, posit_X, posit_Y, ctx, type, color) {
 Waypoint.prototype.draw = function () {
     var self = this;
 
-
-        //self.ctx.fillStyle = self.color;
+        self.ctx.font = '32px Droid Sans Mono, monospace, monospace, Droid Sans Fallback';
+        self.ctx.fillStyle = self.color;
         //self.ctx.fillRect(self.x, self.y, self.width, self.height);
-
         self.ctx.fillText(self.text, self.x, self.y);
     /* Text strategy
     

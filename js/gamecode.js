@@ -8,3 +8,14 @@ function makeHamCheese (hamType, cheeseType) {
 }
 
 var myLunch = makeHamCheese('Serano', 'Edam');
+
+function sloppyAdd (stringNum, num) {
+
+    var result = num + stringNum; 
+
+    return 'The answer is: ' + result;
+
+}
+
+var dontTellTheCGuy = sloppyAdd('2', 2);
+

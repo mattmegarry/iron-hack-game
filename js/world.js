@@ -5,8 +5,8 @@ function World (ctx, width, height) {
 
     self.width = width;
     self.height = height;
-    self.blockColor = 'green';
-    self.portalColor = 'blue';
+    //self.blockColor = 'green';
+    //self.portalColor = 'blue';
 
     self.blocks = [];
     self.waypoints = [];
@@ -129,20 +129,39 @@ World.prototype._createBlocks = function () {
 
 World.prototype._createWaypoints = function () {
     var self = this // change for create portals
+    var darkBlue = '#5594cc';
+    var yellow = '#efefa7';
+    var lightBlue = '#1bcef7';
+    var red = '#ef7958';
+    var magenta = '#b48cce';
+    var white = '#fffff4';
+
+    var yAdjust = 25;
     
-    var newBlock10Percent = new Waypoint('One', 60, 70, self.ctx, 'waypoint', 'pink');
+    var line1 = 70;
+    var line2 = 170;
+    var line3 = 270;
+    var line4 = 370;
+    var line5 = 470;
+
+    //Line One
+    var newBlock10Percent = new Waypoint('function', 60, line1 + yAdjust, self.ctx, 'waypoint', darkBlue);
     self.waypoints.push(newBlock10Percent);
 
-    var newBlock50Percent = new Waypoint('Twwooooooo', 140, 170, self.ctx, 'waypoint', 'pink');
+    //Line Two
+    var newBlock50Percent = new Waypoint('Twwooooooo', 140, line2 + yAdjust, self.ctx, 'waypoint', lightBlue);
     self.waypoints.push(newBlock50Percent);
 
-    var fullFloorBlock = new Waypoint('Three', 140, 270, self.ctx, 'waypoint', 'pink');
+    //Line Three
+    var fullFloorBlock = new Waypoint('Three', 140, line3 + yAdjust, self.ctx, 'waypoint', magenta);
     self.waypoints.push(fullFloorBlock);
 
-    var rightBoundaryBlock = new Waypoint('4', 60, 370, self.ctx, 'waypoint', 'pink');
+    //Line Four
+    var rightBoundaryBlock = new Waypoint('4', 60, line4 + yAdjust, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(rightBoundaryBlock);
 
-    var rightBoundaryBlock = new Waypoint('Fiiiiveeeeeee', 60, 470, self.ctx, 'waypoint', 'pink');
+    //Line Five
+    var rightBoundaryBlock = new Waypoint('Fiiiiveeeeeee', 60, line5 + yAdjust, self.ctx, 'waypoint', 'pink');
     self.waypoints.push(rightBoundaryBlock);
     // self.ctx.fillStyle = self.portalColor;
     // self.ctx.fillRect(0, 400, 26, 26);
