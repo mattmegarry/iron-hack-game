@@ -18,14 +18,14 @@ Block.prototype.draw = function () {
 
 //@TODO Recfactor into more general
 
-    if (self.type = 'solid') {
+    //if (self.type = 'solid') {
         self.ctx.fillStyle = self.color;
         self.ctx.fillRect(self.x, self.y, self.width, self.height);
-    }  
+   /*  }  
     else if (self.type = 'waypoint') {
         self.ctx.fillStyle = self.color;
         self.ctx.fillRect(self.x, self.y, self.width, self.height);
-    }
+    } */
     //self.ctx.fillText('Hello world', 10, 50);
     /* Text strategy
     
